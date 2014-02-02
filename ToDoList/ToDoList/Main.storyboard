@@ -321,6 +321,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="doneButton" destination="f9f-pY-n9I" id="rwO-t7-lLY"/>
+                        <outlet property="textDetails" destination="SiI-fA-iGQ" id="io1-t9-4Ce"/>
                         <outlet property="textField" destination="vpq-98-5so" id="f4L-LU-3NU"/>
                     </connections>
                 </viewController>

@@ -51,6 +51,10 @@
     if (item != nil) {
         [self.toDoItems addObject:item];
         [self.tableView reloadData];
+
+        OTBAppDelegate *appDelegate = (OTBAppDelegate *)[[UIApplication sharedApplication] delegate];
+        [appDelegate saveData];
+
     }
 }
 
@@ -107,7 +111,10 @@
     } else {
         cell.accessoryType = UITableViewCellAccessoryNone;
     }
-    
+
+    OTBAppDelegate *appDelegate = (OTBAppDelegate *)[[UIApplication sharedApplication] delegate];
+    [appDelegate saveData];
+
     return cell;
 }
 
@@ -129,6 +136,8 @@
         [self.toDoItems removeObjectAtIndex:indexPath.row];
         [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
         [tableView reloadData];
+        OTBAppDelegate *appDelegate = (OTBAppDelegate *)[[UIApplication sharedApplication] delegate];
+        [appDelegate saveData];
 
     }
     else if (editingStyle == UITableViewCellEditingStyleInsert) {

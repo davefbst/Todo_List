@@ -12,8 +12,11 @@
 @interface OTBAppDelegate : UIResponder <UIApplicationDelegate> {
 
     NSMutableArray *gamez;
-    
+   
 }
+
+-(void) saveData;
+-(void) loadData;
 
 @property (strong, nonatomic) UIWindow *window;
 

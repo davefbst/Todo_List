@@ -11,10 +11,13 @@
 @interface OTBToDoItem : NSObject <NSCoding>
 {
     NSString *itemName;
+    NSString *itemDetails;
+    
     BOOL completed;
     NSDate *creationDate;  // changed from read only , we will edit so update when edited.?
 }
 @property NSString *itemName;
+@property NSString *itemDetails;
 @property (nonatomic) BOOL completed;
 @property NSDate *creationDate;  // changed from read only , we will edit so update when edited.?
 //@property NSDate *creationDate;

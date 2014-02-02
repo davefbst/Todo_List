@@ -8,8 +8,10 @@
 
 #import "OTBAddToDoItemViewController.h"
 #import "OTBToDoItem.h"
+#import "OTBAppDelegate.h"
 
 @interface OTBAddToDoItemViewController ()
+@property (weak, nonatomic) IBOutlet UITextView *textDetails;
 @property (weak, nonatomic) IBOutlet UITextField *textField;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *doneButton;
 
@@ -25,7 +27,13 @@
     if (self.textField.text.length > 0) {
         self.toDoItem = [[OTBToDoItem alloc] init];
         self.toDoItem.itemName = self.textField.text;
+        self.toDoItem.itemDetails = self.textDetails.text;
         self.toDoItem.completed = NO;
+        self.toDoItem.creationDate = [[NSDate alloc] init];
+        
+        OTBAppDelegate *appDelegate = (OTBAppDelegate *)[[UIApplication sharedApplication] delegate];
+        [appDelegate saveData];
+        
     }
 
 }
