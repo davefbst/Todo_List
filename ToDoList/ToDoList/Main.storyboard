@@ -13,14 +13,14 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ListPrototypeCell" textLabel="96Y-IQ-biJ" style="IBUITableViewCellStyleDefault" id="rnE-wR-oT5">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ListPrototypeCell" editingAccessoryType="detailDisclosureButton" textLabel="96Y-IQ-biJ" style="IBUITableViewCellStyleDefault" id="rnE-wR-oT5">
                                 <rect key="frame" x="0.0" y="86" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="rnE-wR-oT5" id="gjL-H6-kg4">
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="finish daft demo" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="96Y-IQ-biJ">
+                                        <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="finish demo" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="96Y-IQ-biJ">
                                             <rect key="frame" x="15" y="0.0" width="290" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="18"/>
@@ -282,18 +282,28 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="New to-do item" minimumFontSize="14" translatesAutoresizingMaskIntoConstraints="NO" id="vpq-98-5so">
-                                <rect key="frame" x="20" y="193" width="280" height="30"/>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Type Title Here" textAlignment="center" minimumFontSize="14" translatesAutoresizingMaskIntoConstraints="NO" id="vpq-98-5so">
+                                <rect key="frame" x="20" y="90" width="280" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="SiI-fA-iGQ">
+                                <rect key="frame" x="20" y="177" width="280" height="148"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="vpq-98-5so" secondAttribute="trailing" constant="20" id="0ut-ew-htf"/>
-                            <constraint firstItem="vpq-98-5so" firstAttribute="top" secondItem="e88-g8-tA7" secondAttribute="bottom" constant="129" id="JE2-uW-Vaq"/>
+                            <constraint firstItem="SiI-fA-iGQ" firstAttribute="top" secondItem="e88-g8-tA7" secondAttribute="bottom" constant="113" id="Fy0-uz-Gmr"/>
+                            <constraint firstItem="vpq-98-5so" firstAttribute="top" secondItem="e88-g8-tA7" secondAttribute="bottom" constant="26" id="JE2-uW-Vaq"/>
                             <constraint firstItem="vpq-98-5so" firstAttribute="leading" secondItem="vPI-Ye-aUX" secondAttribute="leading" constant="20" id="KBV-xA-P8p"/>
+                            <constraint firstItem="SiI-fA-iGQ" firstAttribute="leading" secondItem="vPI-Ye-aUX" secondAttribute="leading" constant="20" id="c07-QX-qOm"/>
+                            <constraint firstAttribute="trailing" secondItem="SiI-fA-iGQ" secondAttribute="trailing" constant="20" id="h9m-Gy-vhb"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Add to do item" id="jV6-ea-EzU">

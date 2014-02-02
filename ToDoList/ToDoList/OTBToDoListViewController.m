@@ -6,6 +6,8 @@
 //  Copyright (c) 2014 David. All rights reserved.
 //
 
+
+#import "OTBAppDelegate.h"
 #import "OTBToDoListViewController.h"
 #import "OTBToDoItem.h"
 #import "OTBAddToDoItemViewController.h"
@@ -18,22 +20,30 @@
 @implementation OTBToDoListViewController
 
 
+
+// todo read from persist data ( which we can later synch)
 -(void)loadInitialData{
-    OTBToDoItem *item1 = [[OTBToDoItem alloc]init];
-    item1.itemName =@"buymilk";
-    [self.toDoItems addObject:item1];
-    OTBToDoItem *item2 = [[OTBToDoItem alloc]init];
-    item2.itemName =@"buymilk";
-    [self.toDoItems addObject:item2];
-    OTBToDoItem *item3 = [[OTBToDoItem alloc]init];
-    item3.itemName =@"buymilk";
-    [self.toDoItems addObject:item3];
-    OTBToDoItem *item4 = [[OTBToDoItem alloc]init];
-    item4.itemName =@"buymilk";
-    [self.toDoItems addObject:item4];
+// so... i'veload an immutable, can't change, i need to copy then don't i...
+
+    OTBAppDelegate *appDelegate = (OTBAppDelegate *)[[UIApplication sharedApplication] delegate];
+    self.toDoItems = [appDelegate gamez];
+    
+//    OTBToDoItem *item1 = [[OTBToDoItem alloc]init];
+//    item1.itemName =@"buymilk";
+//    [self.toDoItems addObject:item1];
+//    OTBToDoItem *item2 = [[OTBToDoItem alloc]init];
+//    item2.itemName =@"buymilk";
+//    [self.toDoItems addObject:item2];
+//    OTBToDoItem *item3 = [[OTBToDoItem alloc]init];
+//    item3.itemName =@"buymilk";
+//    [self.toDoItems addObject:item3];
+//    OTBToDoItem *item4 = [[OTBToDoItem alloc]init];
+//    item4.itemName =@"buymilk";
+//    [self.toDoItems addObject:item4];
+
 }
 
-
+// todo update persist data. hmm will need to init extra info as well as name
 - (IBAction)unwindToList:(UIStoryboardSegue *)segue
 {
     OTBAddToDoItemViewController *source = [segue sourceViewController];
@@ -56,7 +66,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.toDoItems = [[NSMutableArray alloc] init];
+//    self.toDoItems = [[NSMutableArray alloc] init];
     
     [self loadInitialData];
     
@@ -93,7 +103,7 @@
     cell.textLabel.text = toDoItem.itemName;
     
     if (toDoItem.completed) {
-        cell.accessoryType = UITableViewCellAccessoryCheckmark;
+        cell.accessoryType = UITableViewCellAccessoryCheckmark; //UITableViewCellAccessoryDetailDisclosureButton;//
     } else {
         cell.accessoryType = UITableViewCellAccessoryNone;
     }
@@ -101,28 +111,32 @@
     return cell;
 }
 
-/*
+
 // Override to support conditional editing of the table view.
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
 {
     // Return NO if you do not want the specified item to be editable.
     return YES;
 }
-*/
 
-/*
+
+
 // Override to support editing the table view.
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         // Delete the row from the data source
+        [self.toDoItems removeObjectAtIndex:indexPath.row];
         [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    }   
+        [tableView reloadData];
+
+    }
     else if (editingStyle == UITableViewCellEditingStyleInsert) {
         // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
     }   
 }
-*/
+
+
 
 /*
 // Override to support rearranging the table view.

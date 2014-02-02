@@ -8,8 +8,15 @@
 
 #import <UIKit/UIKit.h>
 
-@interface OTBAppDelegate : UIResponder <UIApplicationDelegate>
+
+@interface OTBAppDelegate : UIResponder <UIApplicationDelegate> {
+
+    NSMutableArray *gamez;
+    
+}
 
 @property (strong, nonatomic) UIWindow *window;
+
+@property (strong, nonatomic) NSMutableArray *gamez;
 
 @end

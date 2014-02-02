@@ -10,9 +10,15 @@
 
 @implementation OTBAppDelegate
 
+@synthesize gamez;
+
+
+
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
   
+    [self loadData];
+    
     return YES;
 }
 
@@ -20,6 +26,7 @@
 {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
     // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
+    [self saveData] ;
 }
 
 - (void)applicationDidEnterBackground:(UIApplication *)application
@@ -41,6 +48,47 @@
 - (void)applicationWillTerminate:(UIApplication *)application
 {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+    [self saveData] ;
 }
+
+
+
+
+-(void) loadData {
+    
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentsDirectoryPath = [paths objectAtIndex:0];
+    NSString *filePath = [documentsDirectoryPath stringByAppendingPathComponent:@"appData"];
+    
+    if ([[NSFileManager defaultManager] fileExistsAtPath:filePath]) {
+        NSData *data = [NSData dataWithContentsOfFile:filePath];
+        NSDictionary *savedData = [NSKeyedUnarchiver unarchiveObjectWithData:data];
+        
+        if ([savedData objectForKey:@"games"] != nil) {
+            gamez = [[NSMutableArray alloc] initWithArray:[savedData objectForKey:@"games"]];
+        }
+    }
+    else {  //need to still create gamez though
+           gamez = [[NSMutableArray alloc] init];
+    }
+    
+}
+
+
+
+
+- (void) saveData {
+    NSMutableDictionary *dataDict = [[NSMutableDictionary alloc] initWithCapacity:3];
+    if (gamez != nil) {
+        [dataDict setObject:gamez forKey:@"games"];  // save the games array
+    }
+    
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentsDirectoryPath = [paths objectAtIndex:0];
+    NSString *filePath = [documentsDirectoryPath stringByAppendingPathComponent:@"appData"];
+    
+    [NSKeyedArchiver archiveRootObject:dataDict toFile:filePath];
+}
+
 
 @end

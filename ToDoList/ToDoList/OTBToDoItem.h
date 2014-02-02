@@ -8,10 +8,15 @@
 
 #import <Foundation/Foundation.h>
 
-@interface OTBToDoItem : NSObject
-
+@interface OTBToDoItem : NSObject <NSCoding>
+{
+    NSString *itemName;
+    BOOL completed;
+    NSDate *creationDate;  // changed from read only , we will edit so update when edited.?
+}
 @property NSString *itemName;
-@property BOOL completed;
-@property (readonly) NSDate *creationDate;
+@property (nonatomic) BOOL completed;
+@property NSDate *creationDate;  // changed from read only , we will edit so update when edited.?
+//@property NSDate *creationDate;
 
 @end
